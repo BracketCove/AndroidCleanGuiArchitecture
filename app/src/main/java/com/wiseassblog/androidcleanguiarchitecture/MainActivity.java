@@ -1,18 +1,16 @@
 package com.wiseassblog.androidcleanguiarchitecture;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import java.net.HttpURLConnection;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MainActivity extends
-        AppCompatActivity implements Publisher.Subscriber<IViewContract.UpdateViewEvent>, IViewContract.View {
+        AppCompatActivity implements Subscriber<IViewContract.UpdateViewEvent>, IViewContract.View {
 
     TextView textWidgetLeft, textWidgetRight;
     Switch switchWidgetLeft, switchWidgetRight;

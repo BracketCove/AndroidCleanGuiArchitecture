@@ -19,7 +19,7 @@ public interface IViewContract {
      * We may only give the ViewModel String, int, bool
      */
     interface ViewModel {
-        public void setSubscriber(Publisher.Subscriber<UpdateViewEvent> sub);
+        public void setSubscriber(Subscriber<UpdateViewEvent> sub);
         public void clear();
 
         public void setLeftTextLabel(String s);

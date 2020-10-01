@@ -63,7 +63,7 @@ class Logic extends BaseViewLogic<ViewInteraction> {
 
     private void onStart() {
         vm.setSubscriber(
-                (Publisher.Subscriber<IViewContract.UpdateViewEvent>) view
+                (Subscriber<IViewContract.UpdateViewEvent>) view
         );
 
         getData();

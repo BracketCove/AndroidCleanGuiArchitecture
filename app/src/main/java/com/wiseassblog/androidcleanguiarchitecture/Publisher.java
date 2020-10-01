@@ -9,7 +9,7 @@ import java.util.List;
  * Why the Event Class?
  * I wanted a way that I could introduce a rudimentary form of Domain
  */
-abstract class Publisher<EVENT> {
+public abstract class Publisher<EVENT> {
     List<Subscriber<EVENT>> subscribers = new ArrayList<>();
 
     protected void updateString(EVENT e, String s){
@@ -35,19 +35,5 @@ abstract class Publisher<EVENT> {
         for (Subscriber<EVENT> sub: subscribers) {
             sub.onUpdateObject(e, o);
         }
-    }
-
-    interface Subscriber<EVENT> {
-
-        public void onUpdateString(EVENT e, String s);
-
-        public void onUpdateInt(EVENT e, int i);
-
-        public void onUpdateBool(EVENT e, boolean b);
-
-        /**
-         * Use with caution.
-         */
-        public void onUpdateObject(EVENT e, Object o);
     }
 }
