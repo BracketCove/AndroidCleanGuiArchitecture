@@ -16,11 +16,12 @@ interface MainContract {
     }
 }
 
-sealed class ViewEvents {
-    object OnStart : ViewEvents()
-    object OnButtonClicked : ViewEvents()
-    data class OnSwitchLeft(val isEnabled: Boolean) : ViewEvents()
-    data class OnSwitchRight(val isEnabled: Boolean) : ViewEvents()
+sealed class MainViewEvents {
+    object OnStart : MainViewEvents()
+    object OnDestroy : MainViewEvents()
+    object OnButtonClicked : MainViewEvents()
+    data class OnSwitchLeft(val isEnabled: Boolean) : MainViewEvents()
+    data class OnSwitchRight(val isEnabled: Boolean) : MainViewEvents()
 }
 
 sealed class MainEvents {

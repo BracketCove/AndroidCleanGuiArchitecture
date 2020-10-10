@@ -1,5 +1,6 @@
 package com.wiseassblog.androidcleanguiarchitecture;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -7,6 +8,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.kotlin.MainKActivity;
 
 
 public class MainActivity extends
@@ -35,7 +38,7 @@ public class MainActivity extends
                     logic.onViewEvent(
                             new ViewInteraction(
                                     ViewInteraction.Event.ON_LEFT_SWITCH_TOGGLE,
-                                    ((Switch)view).isChecked()
+                                    ((Switch) view).isChecked()
                             )
                     );
                 }
@@ -48,7 +51,7 @@ public class MainActivity extends
                     logic.onViewEvent(
                             new ViewInteraction(
                                     ViewInteraction.Event.ON_RIGHT_SWITCH_TOGGLE,
-                                    ((Switch)view).isChecked()
+                                    ((Switch) view).isChecked()
                             )
                     );
                 }
@@ -62,12 +65,16 @@ public class MainActivity extends
                 view -> {
                     logic.onViewEvent(
                             new ViewInteraction(
-                                ViewInteraction.Event.ON_BUTTON_CLICK,
-                            null
+                                    ViewInteraction.Event.ON_BUTTON_CLICK,
+                                    null
                             )
                     );
                 }
         );
+
+        findViewById(R.id.btn_to_kotlin).setOnClickListener((view) -> {
+            startActivity(new Intent(this, MainKActivity.class));
+        });
     }
 
     @Override
@@ -90,7 +97,8 @@ public class MainActivity extends
 
     @Override
     public void onUpdateInt(IViewContract.UpdateViewEvent e, int i) {
-        if (e == IViewContract.UpdateViewEvent.UPDATE_LEFT_PROGRESS_BAR) progressBarWidgetLeft.setProgress(i);
+        if (e == IViewContract.UpdateViewEvent.UPDATE_LEFT_PROGRESS_BAR)
+            progressBarWidgetLeft.setProgress(i);
         else progressBarWidgetRight.setProgress(i);
     }
 
@@ -103,6 +111,7 @@ public class MainActivity extends
     /**
      * This method exists only to demonstrate how we could send some kind of arbitrary object
      * to our View if necessary, but understand that we lose Type safety in doing so.
+     *
      * @param e
      * @param o
      */

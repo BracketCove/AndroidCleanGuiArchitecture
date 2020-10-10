@@ -3,7 +3,7 @@ package com.example.kotlin
 import com.example.kotlin.base.ViewLogic
 import com.example.kotlin.contract.MainContract
 import com.example.kotlin.contract.MainEvents
-import com.example.kotlin.contract.ViewEvents
+import com.example.kotlin.contract.MainViewEvents
 import com.example.kotlin.data.DataSource
 import com.example.kotlin.data.DomainModel
 import com.example.kotlin.utils.Subscriber
@@ -13,15 +13,20 @@ class MainLogic(
     private val view: MainContract.View,
     private val subscriber: Subscriber<MainEvents>,
     private val dataSource: DataSource
-) : ViewLogic<ViewEvents>() {
+) : ViewLogic<MainViewEvents>() {
 
-    override fun onEvent(event: ViewEvents) {
+    override fun onEvent(event: MainViewEvents) {
         when (event) {
-            is ViewEvents.OnStart -> onStart()
-            is ViewEvents.OnButtonClicked -> onButtonClicked()
-            is ViewEvents.OnSwitchLeft -> onLeftSwitch(event.isEnabled)
-            is ViewEvents.OnSwitchRight -> onRightSwitch(event.isEnabled)
+            is MainViewEvents.OnStart -> onStart()
+            is MainViewEvents.OnButtonClicked -> onButtonClicked()
+            is MainViewEvents.OnSwitchLeft -> onLeftSwitch(event.isEnabled)
+            is MainViewEvents.OnSwitchRight -> onRightSwitch(event.isEnabled)
+            is MainViewEvents.OnDestroy -> onDestroy()
         }
+    }
+
+    private fun onDestroy() {
+        viewModel.onClear()
     }
 
     private fun onRightSwitch(enabled: Boolean) {

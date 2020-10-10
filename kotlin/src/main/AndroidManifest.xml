@@ -3,7 +3,7 @@
     package="com.example.kotlin">
 
     <application>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainKActivity"/>
     </application>
 
 </manifest>
