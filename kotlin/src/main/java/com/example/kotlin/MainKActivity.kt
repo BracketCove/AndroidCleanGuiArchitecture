@@ -8,7 +8,7 @@ import com.example.kotlin.contract.MainEvents
 import com.example.kotlin.contract.MainViewEvents
 import com.example.kotlin.deps.BuildLogic
 import com.example.kotlin.utils.Subscriber
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.main_activity.*
 import kotlin.math.log
 
 class MainKActivity : AppCompatActivity(), MainContract.View, Subscriber<MainEvents> {
@@ -17,8 +17,21 @@ class MainKActivity : AppCompatActivity(), MainContract.View, Subscriber<MainEve
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.main_activity)
         logic = BuildLogic.build(this)
+
+        //init listeners
+        swi_some_switch_left.setOnCheckedChangeListener { _, isChecked ->
+            logic.onEvent(MainViewEvents.OnSwitchLeft(isChecked))
+        }
+
+        swi_some_switch_right.setOnCheckedChangeListener { _, isChecked ->
+            logic.onEvent(MainViewEvents.OnSwitchRight(isChecked))
+        }
+
+        btn_fire_event.setOnClickListener {
+            logic.onEvent(MainViewEvents.OnButtonClicked)
+        }
     }
 
     override fun onStart() {

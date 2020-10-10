@@ -5,15 +5,21 @@ import kotlin.random.Random
 class FakeDataSource : DataSource {
 
     override fun leftData(): DomainModel = DomainModel(
-        "THIS IS SPARTA!",
-        false,
-        Random(99).nextInt()
+        (0..3).random().let { randomTitles.get(it) },
+        Random.nextBoolean(),
+        (0..99).random()
     )
 
     override fun rightData(): DomainModel = DomainModel(
-        "Оу блин",
-        true,
-        Random(99).nextInt()
+        (0..3).random().let { randomTitles.get(it) },
+        Random.nextBoolean(),
+        (0..99).random()
     )
 
+    private val randomTitles = listOf(
+        "THIS IS SPARTA!",
+        "Оу блин",
+        "WiseASSsssssss",
+        "I'm soooo Random"
+    )
 }
